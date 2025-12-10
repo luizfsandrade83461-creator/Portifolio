@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Dark UI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- 1. Variáveis de Cores (Fácil de mudar depois) --- */
+        :root {
+            --bg-color: #0d0d0d;       /* Fundo principal */
+            --card-bg: #1a1a1a;        /* Fundo dos cartões */
+            --text-primary: #ffffff;   /* Texto principal */
+            --text-secondary: #a1a1a1; /* Texto secundário */
+            --accent-color: #ff3b30;   /* Vermelho Destaque */
+            --grid-line: rgba(255, 255, 255, 0.05); /* Linha da grade */
+        }
+
+        /* --- 2. Reset Básico --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            /* Efeito de grade no fundo (Grid Background) */
+            background-image: 
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 40px 40px; /* Tamanho dos quadrados da grade */
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* --- 3. Layout Principal (Container) --- */
+        .container {
+            max-width: 1000px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Duas colunas iguais */
+            gap: 40px;
+        }
+
+        /* --- 4. Estilos da Coluna Esquerda --- */
+        .header-info h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .header-info h2 {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .contact-list {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .contact-list li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-list i {
+            color: var(--accent-color);
+        }
+
+        /* Títulos das Seções (Experience, Education, etc) */
+        .section-title {
+            text-align: center;
+            margin: 30px 0 15px 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Cartão Genérico (Estilo vidro escuro) */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid #333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Lista de Experiência/Educação com linha vertical */
+        .timeline-item {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 20px;
+            border-left: 2px solid #333;
+        }
+        
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent-color); /* Brilho neon */
+        }
+
+        .timeline-item h3 {
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+
+        .timeline-item span {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- 5. Estilos da Coluna Direita --- */
+        
+        /* Foto de Perfil */
+        .profile-box {
+    width: 100%;
+    height: 250px;
+    background-color: #333;
+    border-radius: 20px;
+    
+    background-image: url('../img/WhatsApp Image 2025-12-10 at 09.24.09.jpeg'); 
+    
+    background-size: cover;
+    background-position: center;
+    border-bottom: 5px solid var(--accent-color);
+    margin-bottom: 30px;
+    
+    filter: grayscale(100%); 
+    transition: filter 0.3s ease-in-out; 
+    cursor: pointer; 
+}
+.profile-box:hover {
+    filter: grayscale(0%); 
+}
+
+        .profile-box:hover {
+            filter: grayscale(0%); /* Fica colorido ao passar o mouse */
+        }
+
+        .about-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        /* Skills (Círculos) */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Círculo de Progresso com CSS Conic Gradient */
+        .progress-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: radial-gradient(closest-side, var(--card-bg) 79%, transparent 80% 100%),
+                        conic-gradient(var(--accent-color) 75%, #333 0);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Skill específica para exemplo (variações) */
+        .pc-80 { background: radial-gradient(closest-side, var(--card-bg) 79%, transparent 80% 100%), conic-gradient(var(--accent-color) 80%, #333 0); }
+        .pc-90 { background: radial-gradient(closest-side, var(--card-bg) 79%, transparent 80% 100%), conic-gradient(var(--accent-color) 90%, #333 0); }
+        .pc-60 { background: radial-gradient(closest-side, var(--card-bg) 79%, transparent 80% 100%), conic-gradient(var(--accent-color) 60%, #333 0); }
+
+        /* Ícones de Interesse */
+        .interests-grid {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+
+        .interest-item {
+            text-align: center;
+            color: var(--accent-color);
+        }
+        
+        .interest-item i {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+        
+        .interest-item p {
+            font-size: 0.8rem;
+            color: var(--text-primary);
+        }
+
+        /* --- 6. Responsividade (Mobile) --- */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr; /* Vira uma coluna só no celular */
+            }
+            
+            .header-info {
+                text-align: center;
+            }
+
+            .contact-list {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <aside class="left-col">
+            <div class="header-info">
+                <h1>Luiz Felipe Silva De Andrade</h1>
+                <h2>Desenvolvedor front-end</h2>
+                
+                <ul class="contact-list">
+                    <li><i class="fas fa-envelope"></i> lfsilvaandrade@gmail.com</li>
+                    <li><i class="fas fa-phone"></i> +55 81 991425156</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Recife, PE</li>
+                </ul>
+            </div>
+
+            <h3 class="section-title">Experiencia</h3>
+            <div class="card">
+                <div class="timeline-item">
+                    <h3>empinar pipa</h3>
+                    <span>so com linha de cerol</span>
+                </div>
+                <div class="timeline-item">
+                    <h3>desenvolver sistemas</h3>
+                    <span>trabalho na area de js</span>
+                </div>
+                <div class="timeline-item">
+                    <h3>jogar volei</h3>
+                    <span>começei a jogar em 2024 jogo na posiçao de levantador</span>
+                </div>
+            </div>
+
+            <h3 class="section-title">Educação</h3>
+            <div class="card">
+                <div class="timeline-item">
+                    <h3></h3>
+                    <span>primeiro ano medio </span>
+                </div>
+                <div class="timeline-item">
+                    <h3>formado em front-end</h3>
+                    <span>2025-2026 certificado</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="right-col">
+            
+            <div class="profile-box"></div>
+
+            <h3 class="section-title" style="text-align: left;">sobre eu tlgd</h3>
+            <p class="about-text">
+                Luiz Felipe nasceu em 2010 e atualmente tem 15 anos. Estudante do ensino médio, ele também está se dedicando ao curso de Desenvolvimento de Sistemas, onde vem aprendendo programação, tecnologia e criação de projetos digitais. Interessado no mundo da informática, Luiz busca sempre melhorar suas habilidades e entender como as tecnologias funcionam no dia a dia.
+
+Nos momentos livres, gosta de aproveitar o tempo ao ar livre, especialmente soltando e empinando pipa, uma atividade que ele considera divertida e relaxante. Determinado, curioso e sempre disposto a aprender, Luiz Felipe segue construindo seu caminho com foco no futuro e nas oportunidades que a tecnologia pode oferecer.
+
+            <h3 class="section-title">habilidades</h3>
+            <div class="card">
+               <div class="skills-grid">
+    <div class="skill-item">
+        <div class="progress-circle pc-80">
+            <i class="fab fa-html5"></i>
+        </div>
+        <span>html</span>
+    </div>
+
+    <div class="skill-item">
+        <div class="progress-circle pc-90">
+            <i class="fab fa-js"></i>
+        </div>
+        <span>JavaScript</span>
+    </div>
+
+    <div class="skill-item">
+        <div class="progress-circle pc-60">
+            <i class="fab fa-react"></i>
+        </div>
+        <span>React</span>
+    </div>
+
+    <div class="skill-item">
+        <div class="progress-circle pc-80">
+            <i class="fab fa-python"></i>
+        </div>
+        <span>Python</span>
+    </div>
+</div>
+
+
+            <h3 class="section-title">Interest</h3>
+            <div class="card">
+                <div class="interests-grid">
+                    <div class="interest-item">
+    <i class="fas fa-table-tennis-paddle-ball"></i>
+    <p>jogar ping-pong</p>
+</div>
+
+<div class="interest-item">
+    <i class="fas fa-plane"></i>
+    <p>viajar</p>
+</div>
+
+<div class="interest-item">
+    <i class="fas fa-volleyball-ball"></i>
+    <p>jogar volei</p>
+</div>
+
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
